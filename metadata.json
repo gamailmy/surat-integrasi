@@ -1,0 +1,8 @@
+{
+  "name": "Remix SURATKU - Surat Sekolah Otomatis",
+  "description": "Aplikasi pembuatan surat sekolah otomatis untuk operator sekolah dengan nomor surat otomatis, arsip digital, data guru \u0026 siswa, dan export PDF \u0026 Docs.",
+  "requestFramePermissions": [],
+  "majorCapabilities": [
+    "MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"
+  ]
+}

@@ -1,0 +1,108 @@
+{
+  "entities": {
+    "SuratRecord": {
+      "title": "Surat Record",
+      "description": "Dokumen surat keluar resmi dan SPPD sekolah",
+      "type": "object",
+      "properties": {
+        "id": { "type": "string" },
+        "nomorSurat": { "type": "string" },
+        "jenisSurat": { "type": "string" },
+        "kodeKlasifikasi": { "type": "string" },
+        "namaPenerima": { "type": "string" },
+        "tanggalSurat": { "type": "string" },
+        "keperluan": { "type": "string" },
+        "createdAt": { "type": "string" },
+        "updatedAt": { "type": "string" }
+      },
+      "required": ["id", "nomorSurat", "jenisSurat", "namaPenerima", "tanggalSurat", "keperluan"]
+    },
+    "DataGuru": {
+      "title": "Data Guru",
+      "description": "Master data guru dan staf pendidik",
+      "type": "object",
+      "properties": {
+        "id": { "type": "string" },
+        "nama": { "type": "string" },
+        "nip": { "type": "string" },
+        "jabatan": { "type": "string" },
+        "pangkatGolongan": { "type": "string" }
+      },
+      "required": ["id", "nama"]
+    },
+    "DataSiswa": {
+      "title": "Data Siswa",
+      "description": "Master data peserta didik",
+      "type": "object",
+      "properties": {
+        "id": { "type": "string" },
+        "nama": { "type": "string" },
+        "nis": { "type": "string" },
+        "nisn": { "type": "string" },
+        "kelas": { "type": "string" }
+      },
+      "required": ["id", "nama", "kelas"]
+    },
+    "DataSekolah": {
+      "title": "Data Profil Sekolah",
+      "description": "Profil lembaga dan kop surat",
+      "type": "object",
+      "properties": {
+        "namaSekolah": { "type": "string" },
+        "npsn": { "type": "string" },
+        "namaKepalaSekolah": { "type": "string" },
+        "nipKepalaSekolah": { "type": "string" }
+      },
+      "required": ["namaSekolah", "namaKepalaSekolah"]
+    },
+    "AppSettings": {
+      "title": "Pengaturan Aplikasi",
+      "description": "Konfigurasi aplikasi dan integrasi spreadsheet",
+      "type": "object",
+      "properties": {
+        "googleSheetsUrl": { "type": "string" },
+        "autoSync": { "type": "boolean" },
+        "darkMode": { "type": "boolean" }
+      }
+    },
+    "LogAktivitas": {
+      "title": "Log Aktivitas",
+      "description": "Riwayat audit trail aktivitas pengguna",
+      "type": "object",
+      "properties": {
+        "id": { "type": "string" },
+        "timestamp": { "type": "string" },
+        "aksi": { "type": "string" },
+        "detail": { "type": "string" },
+        "tipe": { "type": "string" }
+      },
+      "required": ["id", "timestamp", "aksi", "detail"]
+    }
+  },
+  "firestore": {
+    "/surat/{suratId}": {
+      "schema": { "$ref": "#/entities/SuratRecord" },
+      "description": "Koleksi data surat keluar sekolah"
+    },
+    "/guru/{guruId}": {
+      "schema": { "$ref": "#/entities/DataGuru" },
+      "description": "Koleksi master data guru"
+    },
+    "/siswa/{siswaId}": {
+      "schema": { "$ref": "#/entities/DataSiswa" },
+      "description": "Koleksi master data siswa"
+    },
+    "/settings/config": {
+      "schema": { "$ref": "#/entities/AppSettings" },
+      "description": "Dokumen konfigurasi global sistem"
+    },
+    "/settings/sekolah": {
+      "schema": { "$ref": "#/entities/DataSekolah" },
+      "description": "Dokumen profil data sekolah"
+    },
+    "/logs/{logId}": {
+      "schema": { "$ref": "#/entities/LogAktivitas" },
+      "description": "Koleksi log aktivitas sistem"
+    }
+  }
+}
